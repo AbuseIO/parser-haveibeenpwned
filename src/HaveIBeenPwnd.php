@@ -63,13 +63,13 @@ class HaveIBeenPwnd extends Parser
                         // incident has all requirements met, add it!
 
                         $incident = new Incident();
-                        $incident->source      = config("{$this->configBase}.parser.name");
-                        $incident->source_id   = false;
-                        $incident->ip          = $report['ip'];
-                        $incident->domain      = $report['domain'];
-                        $incident->class       = config("{$this->configBase}.feeds.{$this->feedName}.class");
-                        $incident->type        = config("{$this->configBase}.feeds.{$this->feedName}.type");
-                        $incident->timestamp   = $report['timestamp'];
+                        $incident->source = config("{$this->configBase}.parser.name");
+                        $incident->source_id = false;
+                        $incident->ip = $report['ip'];
+                        $incident->domain = $report['domain'];
+                        $incident->class = config("{$this->configBase}.feeds.{$this->feedName}.class");
+                        $incident->type = config("{$this->configBase}.feeds.{$this->feedName}.type");
+                        $incident->timestamp = $report['timestamp'];
                         $incident->information = json_encode($report);
 
                         $validator = Validator::make($incident->toArray(), Incident::createRules());
@@ -104,23 +104,25 @@ class HaveIBeenPwnd extends Parser
 
         if ($domain) {
             $mx = $this->_getPreferredMXRecord($domain);
-            \Log::debug(print_r($this->_getPreferredMXRecord($domain), true));
 
+            // when we don't have a MX record for $domain, use the fallback_ip
+            $ip = config("{$this->configBase}.feeds.{$this->feedName}.fallback_ip");
             if (!empty($mx)) {
-                $report['feed'] = 'Default';
-                $report['domain'] = $domain;
-                $report['ip'] = $mx['ip'];
-                $report['timestamp'] = $timestamp;
-                $report['data'] = [];
-                $report['data']['body'] = $body;
-                $report['data']['mx'] = $mx;
-                $report['data']['breach'] = [];
-
-                $reports[] = $report;
+                $ip = $mx['ip'];
             }
+
+            $report['feed'] = 'Default';
+            $report['domain'] = $domain;
+            $report['ip'] = $ip;
+            $report['timestamp'] = $timestamp;
+            $report['data'] = [];
+            $report['data']['body'] = $body;
+            $report['data']['mx'] = $mx;
+            $report['data']['breach'] = [];
+
+            $reports[] = $report;
         }
 
-        \Log::debug(print_r($reports, true));
         // TODO there is breach info in the base64 encode htmlmail, add that info to the report breach data
 
         return $reports;
@@ -143,8 +145,7 @@ class HaveIBeenPwnd extends Parser
             if (preg_match('/^([^.]+?\.)*               # any other parts
                                 ([^.]+?\.)+             # last-but-two part
                                 ([^.]+?\.[^.]+?)$/x',   # last two parts
-                    $domain, $matches) == 1)
-            {
+                    $domain, $matches) == 1) {
                 $domain = $matches[3];
                 // If we have a '<subdomain>.<company>.co.uk' situation, keep only
                 // the '<company>.co.uk' part
@@ -169,8 +170,7 @@ class HaveIBeenPwnd extends Parser
         $weight = [];
         $result = [];
 
-        if (getmxrr($domain, $mx, $weight))
-        {
+        if (getmxrr($domain, $mx, $weight)) {
             // find the lowest weight and the matching index
             $current_weight = null;
             $current_index = null;
@@ -187,8 +187,7 @@ class HaveIBeenPwnd extends Parser
             }
 
             // get the preferred mx and its ip
-            if (!is_null($current_index))
-            {
+            if (!is_null($current_index)) {
                 $result['mx'] = $mx[$current_index];
                 $result['weight'] = $current_weight;
                 $result['ip'] = gethostbyname($mx[$current_index]);
