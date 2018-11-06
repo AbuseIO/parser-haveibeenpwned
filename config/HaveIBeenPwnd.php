@@ -14,7 +14,7 @@ return [
 
     'feeds' => [
         'Default' => [
-            'class'     => 'HAVE_I_BEEN_PWNED_DOMAIN_FOUND',
+            'class'     => 'HAVE_I_BEEN_PWND_DOMAIN_FOUND',
             'type'      => 'ABUSE',
             'enabled'   => true,
             'fields'    => [
