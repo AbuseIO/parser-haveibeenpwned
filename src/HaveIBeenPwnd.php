@@ -50,7 +50,6 @@ class HaveIBeenPwnd extends Parser
     public function parse()
     {
         $reports = $this->_getRecords($this->parsedMail);
-        \Log::debug(print_r($reports, true));
 
         if (!empty($reports) && is_array($reports)) {
             foreach ($reports as $report) {
@@ -78,6 +77,7 @@ class HaveIBeenPwnd extends Parser
                             $this->incidents[] = $incident;
                         } else {
                             \Log::debug($incident->toArray());
+                            \Log::debug($validator->messages());
                         }
                     }
                 }
