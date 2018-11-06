@@ -95,7 +95,6 @@ class HaveIBeenPwnd extends Parser
      */
     private function _getRecords($parsedMail)
     {
-        \Log::debug(print_r($parsedMail, true));
         $reports = [];
 
         $body = $parsedMail->getMessageBody();
@@ -103,10 +102,10 @@ class HaveIBeenPwnd extends Parser
         $subject = $parsedMail->getHeader('subject');
         $domain = $this->_getDomain($subject);
 
-        \Log::debug(print_r([$timestamp, $subject, $domain], true));
-
         if ($domain) {
             $mx = $this->_getPreferredMXRecord($domain);
+            \Log::debug(print_r($this->_getPreferredMXRecord($domain), true));
+
             if (!empty($mx)) {
                 $report['feed'] = 'Default';
                 $report['domain'] = $domain;
@@ -121,6 +120,7 @@ class HaveIBeenPwnd extends Parser
             }
         }
 
+        \Log:;debug(print_r($reports, true));
         // TODO there is breach info in the base64 encode htmlmail, add that info to the report breach data
 
         return $reports;
