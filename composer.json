@@ -16,7 +16,7 @@
     ],
     "support": {
         "email": "joost@abuse.io",
-        "source": "https://abuse.io/",
+        "source": "https://abuse.io/"
     },
     "require": {
         "php": ">=5.5.9",
