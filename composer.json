@@ -1,0 +1,30 @@
+{
+    "name": "abuseio/parser-haveibeenpwnd",
+    "description": "Parser addon for handling HaveIBeenPwnd reports",
+    "version": "1.0.2",
+    "keywords": ["laravel", "abuseio", "parser", "haveibeenpwnd"],
+    "homepage": "http://abuse.io",
+    "type": "library",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "AbuseIO",
+            "email": "joost@abuse.io",
+            "homepage": "https://abuse.io",
+            "role": "Lead"
+        }
+    ],
+    "support": {
+        "email": "joost@abuse.io",
+        "source": "https://abuse.io/",
+    },
+    "require": {
+        "php": ">=5.5.9",
+        "abuseio/parser-common": "1.1.* || dev-master",
+    },
+    "autoload": {
+        "psr-4": {
+            "AbuseIO\\Parser\\HaveIBeenPwnd\\": "src/"
+        }
+    }
+}
