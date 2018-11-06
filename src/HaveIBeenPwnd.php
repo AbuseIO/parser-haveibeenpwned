@@ -106,7 +106,7 @@ class HaveIBeenPwnd extends Parser
             $mx = $this->_getPreferredMXRecord($domain);
 
             // when we don't have a MX record for $domain, use the fallback_ip
-            $ip = config("{$this->configBase}.feeds.{$this->feedName}.fallback_ip");
+            $ip = config("{$this->configBase}.feeds.Default.fallback_ip");
             if (!empty($mx)) {
                 $ip = $mx['ip'];
             }
