@@ -50,6 +50,7 @@ class HaveIBeenPwnd extends Parser
     public function parse()
     {
         $reports = $this->_getRecords($this->parsedMail);
+        \Log::debug(print_r($reports, true));
 
         if (!empty($reports) && is_array($reports)) {
             foreach ($reports as $report) {
@@ -94,12 +95,15 @@ class HaveIBeenPwnd extends Parser
      */
     private function _getRecords($parsedMail)
     {
+        \Log::debug(print_r($parsedMail, true));
         $reports = [];
 
         $body = $parsedMail->getMessageBody();
         $timestamp = strtotime($parsedMail->getHeader('date'));
         $subject = $parsedMail->getHeader('subject');
         $domain = $this->_getDomain($subject);
+
+        \Log::debug(print_r([$timestamp, $subject, $domain], true));
 
         if ($domain) {
             $mx = $this->_getPreferredMXRecord($domain);
