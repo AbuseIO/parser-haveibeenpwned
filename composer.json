@@ -16,11 +16,11 @@
     ],
     "support": {
         "email": "joost@abuse.io",
-        "source": "https://abuse.io/",
+        "source": "https://abuse.io/"
     },
     "require": {
         "php": ">=5.5.9",
-        "abuseio/parser-common": "1.1.* || dev-master",
+        "abuseio/parser-common": "1.1.* || dev-master"
     },
     "autoload": {
         "psr-4": {
