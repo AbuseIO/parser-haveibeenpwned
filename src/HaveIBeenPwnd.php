@@ -120,7 +120,7 @@ class HaveIBeenPwnd extends Parser
             }
         }
 
-        \Log:;debug(print_r($reports, true));
+        \Log::debug(print_r($reports, true));
         // TODO there is breach info in the base64 encode htmlmail, add that info to the report breach data
 
         return $reports;
