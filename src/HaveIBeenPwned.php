@@ -7,10 +7,10 @@ use Tele2\Odin\Db\OSA;
 use Validator;
 
 /**
- * Class HaveIBeenPwnd
+ * Class HaveIBeenPwned
  * @package AbuseIO\Parsers
  */
-class HaveIBeenPwnd extends Parser
+class HaveIBeenPwned extends Parser
 {
     /**
      * @var string[]

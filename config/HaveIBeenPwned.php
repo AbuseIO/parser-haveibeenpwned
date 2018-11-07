@@ -2,7 +2,7 @@
 
 return [
     'parser' => [
-        'name'          => 'HaveIBeenPwnd',
+        'name'          => 'HaveIBeenPwned',
         'enabled'       => true,
         'sender_map'    => [
             '/noreply@haveibeenpwned.com/',
@@ -14,8 +14,8 @@ return [
 
     'feeds' => [
         'Default' => [
-            'class'     => 'HAVE_I_BEEN_PWND_DOMAIN_FOUND',
-            'type'      => 'ABUSE',
+            'class'     => 'HAVE_I_BEEN_PWNED_DOMAIN_FOUND',
+            'type'      => 'INFO',
             'enabled'   => true,
             'fields'    => [
                 'ip',

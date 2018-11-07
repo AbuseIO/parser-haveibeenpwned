@@ -1,8 +1,8 @@
 {
-    "name": "abuseio/parser-haveibeenpwnd",
-    "description": "Parser addon for handling HaveIBeenPwnd reports",
+    "name": "abuseio/parser-haveibeenpwned",
+    "description": "Parser addon for handling 'have i been pwned' reports",
     "version": "1.0.2",
-    "keywords": ["laravel", "abuseio", "parser", "haveibeenpwnd"],
+    "keywords": ["laravel", "abuseio", "parser", "haveibeenpwned"],
     "homepage": "http://abuse.io",
     "type": "library",
     "license": "GPL-2.0",
@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "AbuseIO\\Parser\\HaveIBeenPwnd\\": "src/"
+            "AbuseIO\\Parser\\HaveIBeenPwned\\": "src/"
         }
     }
 }
