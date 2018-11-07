@@ -115,10 +115,8 @@ class HaveIBeenPwned extends Parser
             $report['domain'] = $domain;
             $report['ip'] = $ip;
             $report['timestamp'] = $timestamp;
-            $report['data'] = [];
-            $report['data']['body'] = $body;
-            $report['data']['mx'] = $mx;
-            $report['data']['breach'] = [];
+            $report['email'] = $body;
+            $report['breach'] = [];
 
             $reports[] = $report;
         }
